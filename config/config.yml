@@ -1,0 +1,26 @@
+wandb_project: "starlink-delay-forecasting"
+run_name: first-test-run
+
+processed_data_path: "data/processed/processed_data.csv"
+train_indices_path: "data/processed/train_indices.csv"
+val_indices_path: "data/processed/val_indices.csv"
+scaler_path: "data/processed/scalers.pkl"
+
+look_back_window_size: 60
+forecast_horizon: 15
+# covariates: ["delay-send", "15s-cos", "15s-sin", "24h-sin", "24h-cos", "lost"]
+covariates: []
+
+batch_size: 16
+learning_rate: 0.001
+max_epochs: 0
+early_stopping_patience: 1
+num_workers: 8
+
+model: persistence # Options: TCN, Persistence
+
+hidden_channels: 16
+kernel_size: 3
+num_blocks: 1
+dilation_base: 2
+dropout: 0.0

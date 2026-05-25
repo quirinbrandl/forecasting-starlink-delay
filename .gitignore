@@ -1,0 +1,20 @@
+data/
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Experiment tracking
+wandb/
+starlink-delay-forecasting/
+
+notebooks/
+
+# MacOS
+.DS_Store
