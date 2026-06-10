@@ -120,9 +120,9 @@ def save_indices(train_idcs, val_idcs, test_idcs, output_dir):
     )
 
 
-def normalize_features(df, features, val_start_idx):
+def normalize_features(df, features, train_end_idx):
     df_normalized = df.copy()
-    training_data = df_normalized.iloc[:val_start_idx]
+    training_data = df_normalized.iloc[:train_end_idx]
     scalers = {}
 
     for feature in features:
@@ -176,7 +176,7 @@ if __name__ == "__main__":
 
     print("Normalizing features...")
     df, scaler_dict = normalize_features(
-        df, features=["delay-rtt", "delay-send"], val_start_idx=val_idcs[0]
+        df, features=["delay-rtt", "delay-send"], train_end_idx=train_idcs[-1] + 1
     )
 
     print("Saving dataset, indices and scalers...")
