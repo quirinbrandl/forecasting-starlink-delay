@@ -12,9 +12,10 @@ wheels/
 
 # Experiment tracking
 wandb/
-starlink-delay-forecasting/
+forecasting_starlink-delay/
 
 notebooks/
+config/
 
 # MacOS
 .DS_Store
