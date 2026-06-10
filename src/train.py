@@ -58,6 +58,8 @@ def parse_config():
 
 def main():
     args = parse_config()
+    
+    L.seed_everything(42, workers=True)
 
     feature_set = args.covariates + ["delay-rtt"]
     train_set = DelayDataset(
@@ -90,8 +92,8 @@ def main():
 
     scaler_dict = joblib.load(args.scaler_path)
     scaler = scaler_dict["delay-rtt"]
-    mean = scaler.mean_
-    std = scaler.scale_
+    mean = scaler.mean_[0]
+    std = scaler.scale_[0]
 
     model_name = args.model.lower()
     if model_name == "tcn":
@@ -104,8 +106,8 @@ def main():
             dropout=args.dropout,
             forecast_horizon=args.forecast_horizon,
             learning_rate=args.learning_rate,
-            target_mean=mean,
-            target_std=std,
+            target_mean=float(mean),
+            target_std=float(std),
         )
     elif model_name == "persistence":
         model = PersistenceModel(
@@ -117,7 +119,10 @@ def main():
         raise ValueError(f"{model_name} is not a supported model")
 
     wandb_logger = WandbLogger(
-        project=args.wandb_project, name=args.run_name, log_model="all"
+        project=args.wandb_project,
+        name=args.run_name,
+        log_model="all",
+        config=vars(args),
     )
     wandb_logger.watch(model, log="all")
 
