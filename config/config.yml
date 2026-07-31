@@ -1,5 +1,5 @@
-wandb_project: "starlink-delay-forecasting"
-run_name: first-test-run
+wandb_project: "forecasting-starlink-delay"
+run_name: null
 
 processed_data_path: "data/processed/processed_data.csv"
 train_indices_path: "data/processed/train_indices.csv"
@@ -8,8 +8,9 @@ scaler_path: "data/processed/scalers.pkl"
 
 look_back_window_size: 60
 forecast_horizon: 15
-# covariates: ["delay-send", "15s-cos", "15s-sin", "24h-sin", "24h-cos", "lost"]
-covariates: []
+
+# possible covariates: ["delay-send", "15s-cos", "15s-sin", "24h-sin", "24h-cos", "lost"]
+covariates: ["15s-cos", "15s-sin", "24h-sin", "24h-cos"]
 
 batch_size: 16
 learning_rate: 0.001
