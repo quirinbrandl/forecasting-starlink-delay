@@ -11,6 +11,7 @@ This repository implements a Temporal Convolutional Network (TCN) as a direct fo
 - **`notebooks/`**: Jupyter notebooks for evaluation plots (predictions vs. ground truth, per-step boxplots, etc.).
 - **`src/`**: Source code for the project:
   - `data/`: Preprocessing and PyTorch dataset.
+  - `experiments/`: Scripts for running automated experiments (e.g., feature selection, window analysis).
   - `models/`: Model architectures (TCN, Persistence).
   - `utils/`: Utilities for evaluation and visualization.
 
@@ -20,7 +21,7 @@ This repository implements a Temporal Convolutional Network (TCN) as a direct fo
 - **Matplotlib & Seaborn**: For generating visualizations.
 
 ## Setup Environment
-This project uses [`uv`](https://github.com/astral-sh/uv) for fast and reproducible Python dependency management.
+This project uses [`uv`](https://docs.astral.sh/uv/) for dependency management.
 
 1. Ensure `uv` is installed on your system.
 2. Install the project dependencies and create a virtual environment by running:
@@ -39,6 +40,12 @@ Then, run the training script:
 ```bash
 python src/train.py
 ```
+You can also run automated experiments (such as forward feature selection or look-back window analysis) using the scripts in the `src/experiments/` directory:
+```bash
+python src/experiments/forward_feature_selection.py
+python src/experiments/look_back_window_analysis.py
+```
+
 For evaluation and visualizing the results (e.g., ground truth vs. predictions, per-step errors), explore the Jupyter notebooks inside the `notebooks/` directory.
 
 ## License
