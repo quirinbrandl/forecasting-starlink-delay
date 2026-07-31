@@ -34,7 +34,7 @@ def parse_config():
 
     parser.add_argument("--look_back_window_size", type=int)
     parser.add_argument("--forecast_horizon", type=int)
-    parser.add_argument("--covariates", nargs="+")
+    parser.add_argument("--covariates", nargs="*")
 
     parser.add_argument("--batch_size", type=int)
     parser.add_argument("--learning_rate", type=float)
